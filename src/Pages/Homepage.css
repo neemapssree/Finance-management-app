@@ -1,0 +1,13 @@
+
+.cz_d { position: relative;}
+.cz_gf.b1_f2 { z-index: -1;font-size: 0;left: 0;position: absolute;top: 0;}
+.cz_d .cz_gf path {
+    stroke-dasharray: 1500;
+    stroke-dashoffset: 1500;
+    animation: dash 2s linear forwards;
+  }
+  @keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+    }
+  }

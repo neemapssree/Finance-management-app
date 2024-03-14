@@ -1,0 +1,8 @@
+.formSec { background-color: #00000063; width: 90%; border-radius: 50px; box-shadow: 1px 1px 11px #ffffff2e;}
+.mainBanner {background-repeat: no-repeat; background-size: cover;background-position: 25% 50%;}
+.imgBanner {min-width: 100%; animation-timing-function: ease-in;position: relative;animation: mymove .7s;}
+@keyframes mymove {
+    from {left: -500px;}
+    to {left: 0px;}
+  }
+.formSec .fa-user { background-color: #1b39a0; color:#fff; padding: 20px; width: 40px; height: 40px; border-radius: 50%;}

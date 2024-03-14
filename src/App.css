@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+
+.navbar-brand { font-size: 29px !important; }
+.primaryBtn {background-color:#101935; color: #fff; }
+.secondaryBtn {background-color:#564787; color: #fff; border-radius: 20px; padding: 15px 40px;}
+.secondaryBtn:hover {border: 1px solid #564787; }
+.primaryBtn:hover {background-color:#fff; color: #101935; width: 100%; border-color: #101935;}
+.link {text-decoration:underline;font-weight: 700; color:#101935; cursor: pointer;}
+a {text-decoration:none; cursor: pointer;}
+.navbar { background-color: #101935;}
+.navbar-nav {gap: 50px;}
+.footer { background-color: #101935;position: fixed; bottom: 0px; width: 100%;}
+.errors { font-size: 12px; color: red;}
+#userNav.dropdown-toggle::after{display: none;}
+.loginBtn {background-color: transparent;  border: 1px solid #fff; color: #fff; width: 100%; border-radius: 20px;}
+h1 { font-size: 5rem;}
+h1.smallh1 { font-size: 3rem;}
+.modalForm input {
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    min-height: 38px;
+    padding: 2px 8px;
+}
+.modalForm #category input {    
+    min-height: unset;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+table.myTable tr {border-bottom: 1px solid #ddd; box-shadow: 0px 8px 11px 1px #dbcbd85e;}
+table.myTable thead {background: #dbcbd8;}
+.pagination { gap:10px;}
+.pagination li button {border: 0px; padding: 5px 10px; background: #fff;}
+.pagination li button:active,.pagination li.active button {background: #d8ccd7;box-shadow: 2px 2px 5px 2px #ddd; }
+.pagination li.active.prevArrow button, .pagination li.active.nextArrow button {background: #d8ccd74d;}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/*font families*/
+.ff-caveat {font-family: 'Caveat', cursive;}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
