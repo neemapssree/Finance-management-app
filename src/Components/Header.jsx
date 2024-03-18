@@ -27,7 +27,7 @@ const Header = () => {
 
   return (    
 
-    <div className='navbar navbar-expand-lg text-light py-3'>
+    <div className='navbar navbar-expand-lg text-light py-3 px-md-0 px-3'>
       <div className='container px-0'>
         <a className="navbar-brand text-light d-flex" href="/"><span className='me-3'>Budget Buddy</span><IconPage icon={faChartSimple} /></a>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">

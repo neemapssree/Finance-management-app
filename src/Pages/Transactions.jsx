@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import Layout from '../Components/Layout'
 import ModalView from '../Components/ModalView';
 import Select from 'react-select';
@@ -27,14 +27,11 @@ const Transactions = () => {
       const [selCategory, setSelCategory] = useState(''); 
 
     //get all transactions
-    const [allTransactions,setAllTransactions] = useState('');
+    const [allTransactions,setAllTransactions] = useState('');    
 
-    useEffect(()=>{
-        getAllTransactions();
-    },[frequency,selectedDate,selCategory]);
-
-    const getAllTransactions = async () => {
+    const getAllTransactions = useCallback(async () => {
         try{
+            console.log("Category changed:", selCategory);
             const user = JSON.parse(localStorage.getItem("user"));
             console.log("user is:", user.userId);
             setLoading(true);
@@ -53,7 +50,11 @@ const Transactions = () => {
         }catch(error){
             console.log(error);
         }        
-    }
+    }, [frequency, selectedDate, selCategory]); // Add dependencies here
+
+    useEffect(() => {
+        getAllTransactions();
+    }, [getAllTransactions]); // Pass the function itself as the only dependency
     
     const columns = [
         {
@@ -104,7 +105,14 @@ const Transactions = () => {
     value={catOptions.find(option => option.value === transacData.category)}
     id="category" name="category" placeholder="Select Category" 
     onChange={(selectedOption)=>setTransacData({...transacData,category: selectedOption.value})} />
-    );  
+    );
+    
+    const CategoryFilter = () => (
+        <Select options={catOptions}
+        value={catOptions.find(option => option.value === selCategory)}
+        id="category" name="category" placeholder="Select Category" 
+        onChange={(selectedOption)=>setSelCategory(selectedOption.value)} />
+        );
 
     const [loading,setLoading] = useState(false);      
       //error validation
@@ -164,7 +172,7 @@ const Transactions = () => {
                         </div>
                         <div className='ms-3'>
                             <h6>Select Category</h6>
-                            <Category onChange={(value)=> setSelCategory(value)} />
+                            <CategoryFilter />
                         </div>
                     </div>
                     <button className='btn secondaryBtn w-auto' onClick={()=>setShowModal(true)} style={{height:"fit-content"}}>Add New</button>
