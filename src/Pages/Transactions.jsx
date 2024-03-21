@@ -17,6 +17,9 @@ const Transactions = () => {
     const navigate = useNavigate();
     const { errors, validateForm } = ValidationCheck();
     const [frequency, setFrequency] = useState('');
+    const [filterType, setFilterType] = useState('');
+    const [showDateModal, setShowDateModal] = useState(false);    
+
     const [selectedDate, setSelectedDate] = useState([
         {
           startDate: new Date(),
@@ -24,14 +27,35 @@ const Transactions = () => {
           key: 'selection'
         }
       ]);   
-      const [selCategory, setSelCategory] = useState(''); 
+      const [selCategory, setSelCategory] = useState('');       
 
     //get all transactions
-    const [allTransactions,setAllTransactions] = useState('');    
+    const [allTransactions,setAllTransactions] = useState([]); 
+    const [customFrequencySelected, setCustomFrequencySelected] = useState(false);
+    
+    const handleFreqChange = (e) => {
+        const newFrequency = e.target.value;
+        setFrequency(newFrequency);
+        if (newFrequency === 'custom' && !customFrequencySelected || newFrequency === 'custom' && customFrequencySelected) {
+            setShowDateModal(true);
+            setCustomFrequencySelected(true);            
+        } else {
+            setShowDateModal(false);            
+        }  
+        //console.log("option changed");      
+    }
+    const handleTypeChange = (e) => {
+        const newType = e.target.value;
+        setFilterType(newType);             
+    }
 
-    const getAllTransactions = useCallback(async () => {
-        try{
-            console.log("Category changed:", selCategory);
+    // const handleMenuOpen = (e) => {
+    //     setFrequency(''); 
+    //     console.log("menu opened");      
+    // }
+
+    const getAllTransactions = useCallback(async () => {        
+        try{            
             const user = JSON.parse(localStorage.getItem("user"));
             console.log("user is:", user.userId);
             setLoading(true);
@@ -42,7 +66,8 @@ const Transactions = () => {
                 userid:user.userId,
                 frequency,
                 selectedDate,
-                selCategory
+                selCategory,
+                filterType
             });
             const sortedData = response.data.sort((a, b) => new Date(b.date) - new Date(a.date));  //date sort
             setLoading(false);
@@ -50,11 +75,13 @@ const Transactions = () => {
         }catch(error){
             console.log(error);
         }        
-    }, [frequency, selectedDate, selCategory]); // Add dependencies here
+    }, [frequency, selectedDate, selCategory, filterType]); // Add dependencies here
 
-    useEffect(() => {
-        getAllTransactions();
-    }, [getAllTransactions]); // Pass the function itself as the only dependency
+    useEffect(() => {        
+        getAllTransactions();       
+        
+    }, [getAllTransactions, frequency, selectedDate, selCategory, filterType]); // Pass the function itself as the only dependency
+
     
     const columns = [
         {
@@ -94,7 +121,7 @@ const Transactions = () => {
     //add transaction
 
     const [showModal, setShowModal] = useState(false);  
-    const catOptions = categoriesList;
+    const catOptions = categoriesList;    
      
     const [transacData, setTransacData] = useState({
         date:'', type:'', amount:'', category:'', reference:'', description:''
@@ -145,6 +172,7 @@ const Transactions = () => {
         }        
 
     };
+    
 
   return (
     <Layout>
@@ -154,25 +182,33 @@ const Transactions = () => {
                     <div className='d-flex justify-content-start'>
                         <div>
                             <h6>Select frequency</h6>
-                            <select name="frequency" value={frequency} onChange={(e)=> setFrequency(e.target.value)}> 
+                            <select name="frequency" value={frequency} onChange={(e) => handleFreqChange(e)}>
                                 <option value="">Select</option>                           
                                 <option value="7">Last one week</option>
                                 <option value="30">Last one month</option>
                                 <option value="365">Last one Year</option>
-                                <option value="custom">Custom</option>                            
+                                <option value="custom">Custom</option>                          
                             </select>
-                        {frequency ==='custom' && 
+                        {/* {frequency ==='custom' && 
                             <DateRange
                             editableDateInputs={true}
                             onChange={item => setSelectedDate([item.selection])}
                             moveRangeOnFirstSelection={false}
                             ranges={selectedDate}
                             /> 
-                        }
+                        } */}
                         </div>
                         <div className='ms-3'>
                             <h6>Select Category</h6>
                             <CategoryFilter />
+                        </div>
+                        <div className='ms-3'>
+                            <h6>Select Type</h6>
+                            <select name='filterType' id="filterType" value={filterType} onChange={(e) => handleTypeChange(e)} className='selectFilter'>
+                                <option value="">Select type</option>
+                                <option value="income">Income</option>
+                                <option value="expense">Expense</option>
+                            </select>
                         </div>
                     </div>
                     <button className='btn secondaryBtn w-auto' onClick={()=>setShowModal(true)} style={{height:"fit-content"}}>Add New</button>
@@ -190,7 +226,7 @@ const Transactions = () => {
                 <div className='row'>
                     <div className="col-md-6 form-group my-2">
                         <p className='fw-bold'>Date</p>                    
-                        <input type='date' name='date' value={transacData.data} onChange={(e)=>{setTransacData({...transacData,date:e.target.value})}} className='w-100'/>
+                        <input type='date' name='date' value={transacData.date} onChange={(e)=>{setTransacData({...transacData,date:e.target.value})}} className='w-100'/>
                         {errors.date && <span className='errors'>{errors.date}</span>}
                     </div>
                     <div className="col-md-6 form-group my-2">  
@@ -226,6 +262,15 @@ const Transactions = () => {
                         <button type="submit" className="btn secondaryBtn my-3 text-uppercase w-auto py-2 align-self-end" onClick={handleSubmit}>Add Entry</button>
                     </div>
             </form>            
+        </ModalView>
+
+        <ModalView showModal={showDateModal} setShowModal={setShowDateModal}>
+            <DateRange
+                editableDateInputs={true}
+                onChange={item => setSelectedDate([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={selectedDate}
+            />
         </ModalView>
     </Layout>
   )
