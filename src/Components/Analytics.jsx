@@ -1,5 +1,6 @@
 import React from 'react'
 import { Progress } from 'antd';
+import { categoriesList } from '../Constants/Constants';
 
 const Analytics = ({ allTransaction }) => {
     const totalTransaction = allTransaction.length;
@@ -26,6 +27,7 @@ const Analytics = ({ allTransaction }) => {
     const totalExpenseTurnOverPercent = ( totalExpenseTurnOver / totalTurnOver ) * 100;
 
   return (
+    <>
     <div className='row'>
         <div className="col-md-4">
             <div className="card">
@@ -58,6 +60,51 @@ const Analytics = ({ allTransaction }) => {
             </div>
         </div>
     </div>
+    <div className="row mt-4 mb-5">                  
+        <h4 className='mb-3'>Categorywise Income</h4>
+        {
+            categoriesList.map(categoryItem => {
+                const catIncomeAmount = allTransaction.filter(
+                    transaction => transaction.type === 'income' && transaction.category === categoryItem.value
+                    ).reduce((acc,transaction) => acc + transaction.amount,0);
+                const catIncomePercent = ( catIncomeAmount / totalIncomeTurnOver ) * 100;
+                return(                                
+                    catIncomeAmount !== 0 && 
+                    <div className="col-md-3"> 
+                        <div className="card">
+                            <div className="card-body">
+                                <h5>{ categoryItem.value }</h5>
+                                <Progress type="circle" percent={catIncomePercent.toFixed(0)} strokeColor={'yellow'} />
+                            </div>
+                        </div>  
+                    </div>                          
+                );
+            })
+            
+        }       
+        <h4 className='mt-4 mb-3'>Categorywise Expense</h4>
+        {
+            categoriesList.map(categoryItem => {
+                const catExpenseAmount = allTransaction.filter(
+                    transaction => transaction.type === 'income' && transaction.category === categoryItem.value
+                    ).reduce((acc,transaction) => acc + transaction.amount,0);
+                const catExpensePercent = ( catExpenseAmount / totalExpenseTurnOver ) * 100;
+                return(                                
+                        catExpenseAmount !== 0 && 
+                        <div className="col-md-3"> 
+                            <div className="card">
+                                <div className="card-body">
+                                    <h5>{ categoryItem.value }</h5>
+                                    <Progress type="circle" percent={catExpensePercent.toFixed(0)} strokeColor={'#564787'} />
+                                </div>
+                            </div>  
+                        </div>                          
+                );
+            })
+            
+        }                    
+    </div>
+    </>
   )
 }
 

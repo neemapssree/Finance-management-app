@@ -52,8 +52,8 @@ select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
 }
 select.selectFilter, .css-b62m3t-container { width: 150px;}
-.viewsBox .viewsBoxIcon { cursor: pointer; filter: brightness(0.1); width: 40px; padding: 5px;}
-.viewsBox .viewsBoxIcon:hover, .viewsBox .viewsBoxIcon img.active-icon { filter: invert(0.9) !important; box-shadow: 1px 1px 1px 1px #ddd; padding: 5px;}
+.viewsBox .viewsBoxIcon { cursor: pointer; filter: brightness(0.1); width: 40px; height: 45px; padding: 5px;}
+.viewsBox .viewsBoxIcon:hover, .viewsBox .viewsBoxIcon.active-icon { filter: invert(0.9) !important; box-shadow: 1px 1px 1px 1px #ddd; padding: 5px;}
 
 @media only screen and (max-width:768px) {
     h1{ font-size: 4rem; }

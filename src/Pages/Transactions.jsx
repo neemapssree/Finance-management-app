@@ -180,7 +180,7 @@ const Transactions = () => {
 
   return (
     <Layout>
-        <div className='container mt-5'>
+        <div className='container my-5'>
             <div className='row'>
                 <div className='d-flex flex-row justify-content-between mb-4'>
                     <div className='d-flex justify-content-start'>
@@ -218,11 +218,11 @@ const Transactions = () => {
                     <div>
                         <p className='text-center'>Select View</p>
                         <div className='viewsBox d-flex'>
-                            <div className={`viewsBoxIcon ms-2 me-4 mt-2 ${viewData === 'table' ? 'active-icon' : ''}`}
+                            <div className={`viewsBoxIcon ms-2 me-3 ${viewData === 'table' ? 'active-icon' : ''}`}
                                 onClick={()=> setViewData('table')}>
                                 <img src={listImg} width="30" />
                             </div>
-                            <div className={`viewsBoxIcon ms-4 me-2 ${viewData === 'analytics' ? 'active-icon' : ''}`}
+                            <div className={`viewsBoxIcon ms-3 me-2 ${viewData === 'analytics' ? 'active-icon' : ''}`}
                                 onClick={()=> setViewData('analytics')}>
                                 <img src={graphImg} width="30" />
                             </div>
