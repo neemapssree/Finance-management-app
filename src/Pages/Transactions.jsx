@@ -12,13 +12,17 @@ import ValidationCheck from '../Components/ValidationCheck';
 import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
+import graphImg from '../assets/img/graph-icon.png';
+import listImg from '../assets/img/list-icon.png';
+import Analytics from '../Components/Analytics';
 
 const Transactions = () => {
     const navigate = useNavigate();
     const { errors, validateForm } = ValidationCheck();
-    const [frequency, setFrequency] = useState('');
+    const [frequency, setFrequency] = useState('30');
     const [filterType, setFilterType] = useState('');
     const [showDateModal, setShowDateModal] = useState(false);    
+    const [viewData, setViewData] = useState('table');
 
     const [selectedDate, setSelectedDate] = useState([
         {
@@ -185,7 +189,7 @@ const Transactions = () => {
                             <select name="frequency" value={frequency} onChange={(e) => handleFreqChange(e)}>
                                 <option value="">Select</option>                           
                                 <option value="7">Last one week</option>
-                                <option value="30">Last one month</option>
+                                <option value="30" selected>Last one month</option>
                                 <option value="365">Last one Year</option>
                                 <option value="custom">Custom</option>                          
                             </select>
@@ -211,11 +215,30 @@ const Transactions = () => {
                             </select>
                         </div>
                     </div>
+                    <div>
+                        <p className='text-center'>Select View</p>
+                        <div className='viewsBox d-flex'>
+                            <div className={`viewsBoxIcon ms-2 me-4 mt-2 ${viewData === 'table' ? 'active-icon' : ''}`}
+                                onClick={()=> setViewData('table')}>
+                                <img src={listImg} width="30" />
+                            </div>
+                            <div className={`viewsBoxIcon ms-4 me-2 ${viewData === 'analytics' ? 'active-icon' : ''}`}
+                                onClick={()=> setViewData('analytics')}>
+                                <img src={graphImg} width="30" />
+                            </div>
+                        </div>
+                    </div>
+                    
                     <button className='btn secondaryBtn w-auto' onClick={()=>setShowModal(true)} style={{height:"fit-content"}}>Add New</button>
                 </div>
                 {loading && <Spinner />}
                 {allTransactions &&  
-                    <TableElement colTitle={columns} colElement={allTransactions} itemsPerPage={itemsPerPage} refreshTransactions={getAllTransactions} />
+                    viewData === 'table' ? 
+                    <TableElement 
+                        colTitle={columns} colElement={allTransactions} itemsPerPage={itemsPerPage} 
+                        refreshTransactions={getAllTransactions} />
+                    :
+                    <Analytics allTransaction = {allTransactions} />
                 }            
             </div>
         </div>
