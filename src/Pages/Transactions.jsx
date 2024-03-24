@@ -91,32 +91,32 @@ const Transactions = () => {
         {
             title:"Date",
             dataIndex:"date",
-            width:"15%",
+            width:"150",
         },
         {
             title:"Type",
             dataIndex:"type",
-            width:"10%",
+            width:"100",
         },
         {
             title:"Amount",
             dataIndex:"amount",
-            width:"15%",
+            width:"150",
         },
         {
             title:"Category",
             dataIndex:"category",
-            width:"15%",
+            width:"150",
         },
         {
             title:"Reference",
             dataIndex:"reference",
-            width:"15%",
+            width:"150",
         },
         {
             title:"Description",
             dataIndex:"description",
-            width:"20%",
+            width:"200",
         },
     ]
 
@@ -182,8 +182,8 @@ const Transactions = () => {
     <Layout>
         <div className='container my-5'>
             <div className='row'>
-                <div className='d-flex flex-row justify-content-between mb-4'>
-                    <div className='d-flex justify-content-start'>
+                <div className='d-md-flex flex-row justify-content-between mb-4'>
+                    <div className='d-flex justify-content-start selectFilters mb-md-0 mb-4'>
                         <div>
                             <h6>Select frequency</h6>
                             <select name="frequency" value={frequency} onChange={(e) => handleFreqChange(e)}>
@@ -215,8 +215,8 @@ const Transactions = () => {
                             </select>
                         </div>
                     </div>
-                    <div>
-                        <p className='text-center'>Select View</p>
+                    <div className='mb-md-0 mb-4'>
+                        <p className='text-md-center h6 mb-3'>Select View</p>
                         <div className='viewsBox d-flex'>
                             <div className={`viewsBoxIcon ms-2 me-3 ${viewData === 'table' ? 'active-icon' : ''}`}
                                 onClick={()=> setViewData('table')}>

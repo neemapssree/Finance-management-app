@@ -99,28 +99,30 @@ const TableElement = ({ colTitle, colElement, itemsPerPage, refreshTransactions 
 
   return (
     <>
-    <table cellPadding="10" width="100%" className="myTable">
-        <thead>
-            {colTitle.map((column) => (
-                <th key={column.dataIndex} width={column.width}>{column.title}</th>
-            ))} 
-            <th width="20%">Action</th>           
-        </thead>
-        <tbody>
-            {currentItems.map((row,rowIndex) => (
-                <tr key={rowIndex}>
-                    {colTitle.map((column,colIndex) => (
-                        <td key={colIndex}>{row[column.dataIndex]}</td>
-                    ))}   
-                    <td className='d-flex justify-content-between'>
-                        <a className='link' onClick={(e) => editEntry(row)}>Edit</a>
-                        <a className='link' style={{color:"red"}} onClick={(e)=> deleteModal(row)}>Delete</a></td> 
-                </tr>
-            ))}
+    <div style={{overflowX:'auto'}}>        
+        <table cellPadding="10" className="myTable">
+            <thead>
+                {colTitle.map((column) => (
+                    <th key={column.dataIndex} width={column.width}>{column.title}</th>
+                ))} 
+                <th width="200">Action</th>           
+            </thead>
+            <tbody>
+                {currentItems.map((row,rowIndex) => (
+                    <tr key={rowIndex}>
+                        {colTitle.map((column,colIndex) => (
+                            <td key={colIndex}>{row[column.dataIndex]}</td>
+                        ))}   
+                        <td className='d-flex justify-content-between'>
+                            <a className='link' onClick={(e) => editEntry(row)}>Edit</a>
+                            <a className='link' style={{color:"red"}} onClick={(e)=> deleteModal(row)}>Delete</a></td> 
+                    </tr>
+                ))}
 
-            
-        </tbody>
-    </table>
+                
+            </tbody>
+        </table>    
+    </div>
     <Pagination
         itemsPerPage={itemsPerPage}
         totalItems={colElement.length}

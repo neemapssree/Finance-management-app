@@ -51,7 +51,7 @@ const Header = () => {
           {/* for NON logged users only */}
           <NonUserAuthSections authorized={false}>
             <div className="collapse navbar-collapse justify-content-end" id="navbarContent">
-              <ul className='d-flex mb-0' style={{gap:"30px",listStyleType:'none'}}>
+              <ul className='d-flex mb-0 navbarMobile' style={{gap:"30px",listStyleType:'none'}}>
                 <li className='nav-item'><a className='text-light' href='/login'>Sign In</a></li>                
               </ul>
             </div>

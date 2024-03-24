@@ -28,7 +28,7 @@ const Analytics = ({ allTransaction }) => {
 
   return (
     <>
-    <div className='row'>
+    <div className='row gy-3'>
         <div className="col-md-4">
             <div className="card">
                 <div className="card-header">
@@ -60,7 +60,7 @@ const Analytics = ({ allTransaction }) => {
             </div>
         </div>
     </div>
-    <div className="row mt-4 mb-5">                  
+    <div className="row mt-4 mb-5 gy-3">                  
         <h4 className='mb-3'>Categorywise Income</h4>
         {
             categoriesList.map(categoryItem => {
@@ -70,7 +70,7 @@ const Analytics = ({ allTransaction }) => {
                 const catIncomePercent = ( catIncomeAmount / totalIncomeTurnOver ) * 100;
                 return(                                
                     catIncomeAmount !== 0 && 
-                    <div className="col-md-3"> 
+                    <div className="col-md-3 col-6"> 
                         <div className="card">
                             <div className="card-body">
                                 <h5>{ categoryItem.value }</h5>
@@ -86,12 +86,12 @@ const Analytics = ({ allTransaction }) => {
         {
             categoriesList.map(categoryItem => {
                 const catExpenseAmount = allTransaction.filter(
-                    transaction => transaction.type === 'income' && transaction.category === categoryItem.value
+                    transaction => transaction.type === 'expense' && transaction.category === categoryItem.value
                     ).reduce((acc,transaction) => acc + transaction.amount,0);
                 const catExpensePercent = ( catExpenseAmount / totalExpenseTurnOver ) * 100;
                 return(                                
                         catExpenseAmount !== 0 && 
-                        <div className="col-md-3"> 
+                        <div className="col-md-3 col-6"> 
                             <div className="card">
                                 <div className="card-body">
                                     <h5>{ categoryItem.value }</h5>
