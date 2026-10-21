@@ -4,7 +4,6 @@ import ModalView from '../Components/ModalView';
 import Select from 'react-select';
 import AxiosInstance from '../Config/AxiosInstance';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import { categoriesList } from '../Constants/Constants';
 import TableElement from '../Components/TableElement';
@@ -16,8 +15,7 @@ import graphImg from '../assets/img/graph-icon.png';
 import listImg from '../assets/img/list-icon.png';
 import Analytics from '../Components/Analytics';
 
-const Transactions = () => {
-    const navigate = useNavigate();
+const Transactions = () => {    
     const { errors, validateForm } = ValidationCheck();
     const [frequency, setFrequency] = useState('30');
     const [filterType, setFilterType] = useState('');
@@ -34,15 +32,13 @@ const Transactions = () => {
       const [selCategory, setSelCategory] = useState('');       
 
     //get all transactions
-    const [allTransactions,setAllTransactions] = useState([]); 
-    const [customFrequencySelected, setCustomFrequencySelected] = useState(false);
+    const [allTransactions,setAllTransactions] = useState([]);
     
     const handleFreqChange = (e) => {
         const newFrequency = e.target.value;
         setFrequency(newFrequency);
-        if (newFrequency === 'custom' && !customFrequencySelected || newFrequency === 'custom' && customFrequencySelected) {
-            setShowDateModal(true);
-            setCustomFrequencySelected(true);            
+        if (newFrequency === 'custom') {
+            setShowDateModal(true);           
         } else {
             setShowDateModal(false);            
         }  
@@ -164,7 +160,7 @@ const Transactions = () => {
                         setShowModal(false);
                         getAllTransactions();
                     }            
-                    if(res.data.message ==="couldn\'t add new transaction") {
+                    if(res.data.message ==="couldn't add new transaction") {
                         toast.success("An error occured");
                         setLoading(false);
                     }
@@ -220,11 +216,11 @@ const Transactions = () => {
                         <div className='viewsBox d-flex'>
                             <div className={`viewsBoxIcon ms-2 me-3 ${viewData === 'table' ? 'active-icon' : ''}`}
                                 onClick={()=> setViewData('table')}>
-                                <img src={listImg} width="30" />
+                                <img src={listImg} width="30" alt='data' />
                             </div>
                             <div className={`viewsBoxIcon ms-3 me-2 ${viewData === 'analytics' ? 'active-icon' : ''}`}
                                 onClick={()=> setViewData('analytics')}>
-                                <img src={graphImg} width="30" />
+                                <img src={graphImg} width="30" alt='data' />
                             </div>
                         </div>
                     </div>
