@@ -1,10 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { toast } from 'react-toastify';
 import AxiosInstance from '../Config/AxiosInstance';
 import Spinner from './Spinner';
 import Select from "react-select";
 import countryList from 'react-select-country-list';
-
 
 function Register({setBoxName}) {
 

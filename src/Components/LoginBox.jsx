@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import AxiosInstance from '../Config/AxiosInstance';
 import { toast } from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUserDetails, setUserRole } from '../ToolKit/UserSlice';
+import { setUserDetails } from '../ToolKit/UserSlice';
 import Spinner from './Spinner';
 
 

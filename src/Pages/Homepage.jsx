@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Layout from '../Components/Layout'
 import './Homepage.css'
 import {NonUserAuthSections, UserAuthSections } from '../Authorization/Authorization'

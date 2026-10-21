@@ -1,16 +1,13 @@
-import { faTriangleCircleSquare } from '@fortawesome/free-solid-svg-icons';
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ModalView from './ModalView';
 import { Spinner } from 'react-bootstrap';
 import { categoriesList } from '../Constants/Constants';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import AxiosInstance from '../Config/AxiosInstance';
-import { useNavigate } from 'react-router-dom';
 import ValidationCheck from './ValidationCheck';
 
 const TableElement = ({ colTitle, colElement, itemsPerPage, refreshTransactions }) => {
-    const navigate = useNavigate();    
     const [currentPage, setCurrentPage] = useState(1);
 
     const indexOfLastItem = currentPage * itemsPerPage;
@@ -114,8 +111,8 @@ const TableElement = ({ colTitle, colElement, itemsPerPage, refreshTransactions 
                             <td key={colIndex}>{row[column.dataIndex]}</td>
                         ))}   
                         <td className='d-flex justify-content-between'>
-                            <a className='link' onClick={(e) => editEntry(row)}>Edit</a>
-                            <a className='link' style={{color:"red"}} onClick={(e)=> deleteModal(row)}>Delete</a></td> 
+                            <button type="button" className='link' onClick={(e) => editEntry(row)}>Edit</button>
+                            <button type="button" className='link' style={{color:"red"}} onClick={(e)=> deleteModal(row)}>Delete</button></td>
                     </tr>
                 ))}
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import bannerBg from '../assets/img/economy-bg.webp';
 import '@fortawesome/fontawesome-svg-core/styles.css'; // Import Font Awesome styles
 import './Login.css';

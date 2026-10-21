@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import IconPage from '../Pages/IconPage';
 import { faChartSimple, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -9,14 +8,7 @@ import { NonUserAuthSections, UserAuthSections } from '../Authorization/Authoriz
 const Header = () => {
   const navigate = useNavigate();
 
-  const {userDetails} = useSelector(state=>state.user);  
-  const [hasToken,setHasToken] = useState('');
-  const [hasUser,setHasUser] = useState('');
-
-  useEffect (() => {
-    setHasToken(localStorage.getItem('token'));
-    setHasUser(localStorage.getItem('user'));
-  }, [])
+  const {userDetails} = useSelector(state=>state.user);    
 
   const logOutHandler = () => {
     localStorage.removeItem('token');

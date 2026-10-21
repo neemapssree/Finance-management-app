@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Layout from '../Components/Layout'
 import ModalView from '../Components/ModalView';
 import Select from 'react-select';
@@ -9,8 +9,8 @@ import { categoriesList } from '../Constants/Constants';
 import TableElement from '../Components/TableElement';
 import ValidationCheck from '../Components/ValidationCheck';
 import { DateRange } from 'react-date-range';
-import 'react-date-range/dist/styles.css'; // main style file
-import 'react-date-range/dist/theme/default.css'; // theme css file
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
 import graphImg from '../assets/img/graph-icon.png';
 import listImg from '../assets/img/list-icon.png';
 import Analytics from '../Components/Analytics';

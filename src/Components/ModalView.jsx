@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { Modal } from 'react-bootstrap'
 
 const ModalView = ({children, setShowModal,showModal,title}) => {  
