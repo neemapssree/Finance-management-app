@@ -35,7 +35,7 @@ const Header = () => {
               </ul>
               <ul className='d-flex mb-0' style={{gap:"30px",listStyleType:'none'}}>
                 <li className='d-flex nav-item' style={{gap:"15px"}}><IconPage icon={faUser} />{userDetails.name}</li>
-                <li className='nav-item'><a className='text-light' onClick={logOutHandler}>Sign out</a></li>
+                <li className='nav-item'><button type='button' className='text-light' onClick={logOutHandler}>Sign out</button></li>
               </ul>
             </div>
           </UserAuthSections>  
